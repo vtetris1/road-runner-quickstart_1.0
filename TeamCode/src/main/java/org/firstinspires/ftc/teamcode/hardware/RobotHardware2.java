@@ -71,11 +71,11 @@ public class RobotHardware2 {
     //public DistanceSensor distanceL = null;
 
 
+
     public Servo grabServo = null;
-
-
-    public Servo intakeServo = null;
-    //public Servo tiltServoLeft = null;
+    public Servo tiltServo = null;
+    public Servo rotationServo = null;
+    public Servo extentionServo = null;
     //public Servo grabServoLeft = null;
 
 
@@ -123,8 +123,10 @@ public class RobotHardware2 {
 
         // Define and initialize ALL installed servos.
         //grabServo = hwMap.get(Servo.class, "grab_servo");
-        intakeServo = hwMap.get(Servo.class, "intake_servo");
-
+        grabServo = hwMap.get(Servo.class, "grab_servo");
+        tiltServo = hwMap.get(Servo.class, "tilt_servo");
+        rotationServo = hwMap.get(Servo.class, "rotate_servo");
+        extentionServo = hwMap.get(Servo.class, "extend_servo");
 
 
         //intakeTilt = hwMap.get(Servo.class, "intake_servo");
@@ -134,8 +136,10 @@ public class RobotHardware2 {
         //boardPixel.setPosition(0);
         //grabServo.setPosition(0.4);
 
-        motorfr.setDirection(DcMotor.Direction.REVERSE);
+        motorfl.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorfr.setDirection(DcMotorSimple.Direction.REVERSE);
         motorbl.setDirection(DcMotorSimple.Direction.REVERSE);
+
         //br reversed before
 
       //  motorbr.setDirection(DcMotorSimple.Direction.REVERSE);

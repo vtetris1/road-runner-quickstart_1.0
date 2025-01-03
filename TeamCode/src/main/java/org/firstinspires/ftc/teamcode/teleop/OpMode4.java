@@ -23,7 +23,8 @@ public class OpMode4 extends LinearOpMode {
 
     PIDController control = new PIDController();
 */
-    double intakePosition = 0.25;
+    double rotatePosition = 0.5;
+    double horizontalPosition = 0;
 
     ElapsedTime timer = new ElapsedTime();
 
@@ -32,6 +33,7 @@ public class OpMode4 extends LinearOpMode {
 
     private int sleepMs1 = 0;
 //
+
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
      */
@@ -76,95 +78,112 @@ public class OpMode4 extends LinearOpMode {
 
 */
             if (gamepad2.y) {
-                robot.intakeServo.setPosition(1);
-            }
+                rotatePosition += 0.1;
 
-            if (gamepad2.x) {
-                robot.intakeServo.setPosition(0.65);
+                if (rotatePosition >= 1.0) {
+                    rotatePosition = 1.0;
+                }
+
+                robot.rotationServo.setPosition(rotatePosition);
+
             }
 
             if (gamepad2.a) {
-                robot.intakeServo.setPosition(0.25);
-            }
+                rotatePosition -= 0.1;
 
-            if (gamepad2.b) {
-                robot.intakeServo.setPosition(0);
-            }
-
-
-            while (gamepad2.left_trigger > 0.7) {
-                robot.intakeServo.setPosition(intakePosition);
-                intakePosition += 0.02;
-
-                if (intakePosition >= 1.0) {
-                    intakePosition = 1.0;
+                if (rotatePosition >= 0.0) {
+                    rotatePosition = 0.0;
                 }
 
-                robot.intakeServo.setPosition(intakePosition);
-                sleep(15);
+                robot.rotationServo.setPosition(rotatePosition);
+
             }
+
 
             while (gamepad2.right_trigger > 0.7) {
-                robot.intakeServo.setPosition(intakePosition);
-                intakePosition -= 0.02;
+                horizontalPosition += 0.02;
 
-                if (intakePosition <= 0.0) {
-                    intakePosition = 0.0;
+                if (horizontalPosition >= 1.0) {
+                    horizontalPosition = 1.0;
                 }
 
-                robot.intakeServo.setPosition(intakePosition);
-                sleep(15);
+                robot.extentionServo.setPosition(horizontalPosition);
+                sleep(30);
+
+            }
+
+            while (gamepad2.left_trigger > 0.7) {
+                horizontalPosition -= 0.02;
+
+                if (horizontalPosition >= 0.0) {
+                    horizontalPosition = 0.0;
+                }
+
+                robot.extentionServo.setPosition(horizontalPosition);
+                sleep(30);
+
             }
 
 
-            if (gamepad2.right_bumper) {
-                robot.grabServo.setPosition(1);
-            }
 
-            if (gamepad2.left_bumper) {
-                robot.grabServo.setPosition(0.2);
-            }
+                if (gamepad2.right_bumper) {
+                    robot.grabServo.setPosition(1);
+                }
 
+                if (gamepad2.left_bumper) {
+                    robot.grabServo.setPosition(0);
+                }
 
-            while (gamepad1.right_trigger > 0.7) {
-                robot.rightLiftMotor.setPower(-0.7);
-                robot.leftLiftMotor.setPower(0.7);
-            }
+/*
+                while (gamepad1.right_trigger > 0.7) {
+                    robot.rightLiftMotor.setPower(-0.7);
+                    robot.leftLiftMotor.setPower(0.7);
+                }
 
-            while (gamepad1.left_trigger > 0.7) {
-                robot.rightLiftMotor.setPower(0.7);
-                robot.leftLiftMotor.setPower(-0.7);
-            }
+                while (gamepad1.left_trigger > 0.7) {
+                    robot.rightLiftMotor.setPower(0.7);
+                    robot.leftLiftMotor.setPower(-0.7);
+                }
 
-            robot.rightLiftMotor.setPower(0);
-            robot.leftLiftMotor.setPower(0);
+                robot.rightLiftMotor.setPower(0);
+                robot.leftLiftMotor.setPower(0);
 
-
-            if (gamepad2.right_stick_y > 0.7) {
-                robot.actuatorMotor.setPower(-1);
-            } else if (gamepad2.right_stick_y < -0.7) {
-                robot.actuatorMotor.setPower(1);
-            } else {
-                robot.actuatorMotor.setPower(0);
-            }
+*/
 
 
-            if (gamepad2.left_stick_y > 0.7) {
-                robot.pivotMotor.setPower(-0.4);
-            } else if (gamepad2.left_stick_y < -0.7) {
-                robot.pivotMotor.setPower(0.4);
-            } else {
-                robot.pivotMotor.setPower(0.08);
-            }
+                if (gamepad2.right_stick_y > 0.7) {
+                    robot.actuatorMotor.setPower(-1);
+                } else if (gamepad2.right_stick_y < -0.7) {
+                    robot.actuatorMotor.setPower(1);
+                } else {
+                    robot.actuatorMotor.setPower(0);
+                }
 
-            // 0.7      1                    -0.7
+
+                if (gamepad2.left_stick_y > 0.7) {
+                    robot.pivotMotor.setPower(-0.4);
+                } else if (gamepad2.left_stick_y < -0.7) {
+                    robot.pivotMotor.setPower(0.4);
+                } else {
+                    robot.pivotMotor.setPower(0.08);
+                }
+
+                // 0.7      1                    -0.7
 
 //make sure one of the directions is correct/reversed
 
 
-            //spin
+                if (gamepad2.b){
+                    robot.tiltServo.setPosition(0.7);
+                }
 
-            //tilt bucket
+                if (gamepad2.x){
+                    robot.tiltServo.setPosition(0);
+                }
+
+                //spin
+
+                //tilt bucket
 
 
 
@@ -240,9 +259,9 @@ public class OpMode4 extends LinearOpMode {
             robot.liftArm.setPower(liftPowerEnd);
         }
 */
+            }
+
         }
 
+
     }
-
-
-}
