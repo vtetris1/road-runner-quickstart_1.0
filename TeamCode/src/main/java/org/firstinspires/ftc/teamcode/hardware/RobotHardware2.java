@@ -75,7 +75,7 @@ public class RobotHardware2 {
     public Servo grabServo = null;
     public Servo tiltServo = null;
     public Servo rotationServo = null;
-    public Servo extentionServo = null;
+    public CRServo extensionServo = null;
     //public Servo grabServoLeft = null;
 
 
@@ -126,7 +126,7 @@ public class RobotHardware2 {
         grabServo = hwMap.get(Servo.class, "grab_servo");
         tiltServo = hwMap.get(Servo.class, "tilt_servo");
         rotationServo = hwMap.get(Servo.class, "rotate_servo");
-        extentionServo = hwMap.get(Servo.class, "extend_servo");
+        extensionServo = hwMap.get(CRServo.class, "extend_servo");
 
 
         //intakeTilt = hwMap.get(Servo.class, "intake_servo");

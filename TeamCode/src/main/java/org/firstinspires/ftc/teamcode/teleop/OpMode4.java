@@ -77,8 +77,8 @@ public class OpMode4 extends LinearOpMode {
             }
 
 */
-            if (gamepad2.y) {
-                rotatePosition += 0.1;
+            while (gamepad2.y) {
+                rotatePosition += 0.05;
 
                 if (rotatePosition >= 1.0) {
                     rotatePosition = 1.0;
@@ -88,8 +88,8 @@ public class OpMode4 extends LinearOpMode {
 
             }
 
-            if (gamepad2.a) {
-                rotatePosition -= 0.1;
+            while (gamepad2.a) {
+                rotatePosition -= 0.05;
 
                 if (rotatePosition >= 0.0) {
                     rotatePosition = 0.0;
@@ -100,38 +100,30 @@ public class OpMode4 extends LinearOpMode {
             }
 
 
-            while (gamepad2.right_trigger > 0.7) {
-                horizontalPosition += 0.02;
 
-                if (horizontalPosition >= 1.0) {
-                    horizontalPosition = 1.0;
-                }
-
-                robot.extentionServo.setPosition(horizontalPosition);
-                sleep(30);
+            if (gamepad2.left_trigger > 0.7) {
+                robot.extensionServo.setPower(0.7);
 
             }
 
-            while (gamepad2.left_trigger > 0.7) {
-                horizontalPosition -= 0.02;
-
-                if (horizontalPosition >= 0.0) {
-                    horizontalPosition = 0.0;
-                }
-
-                robot.extentionServo.setPosition(horizontalPosition);
-                sleep(30);
+            else if (gamepad2.right_trigger > 0.7) {
+                robot.extensionServo.setPower(-0.7);
 
             }
 
+            else{
+                robot.extensionServo.setPower(0);
+            }
 
-
-                if (gamepad2.right_bumper) {
-                    robot.grabServo.setPosition(1);
+            if (gamepad2.right_bumper) {
+                robot.grabServo.setPosition(1);
+                robot.rotationServo.setPosition(0.5);
                 }
 
-                if (gamepad2.left_bumper) {
-                    robot.grabServo.setPosition(0);
+
+            if (gamepad2.left_bumper) {
+                robot.grabServo.setPosition(0);
+                robot.rotationServo.setPosition(0.5);
                 }
 
 /*
