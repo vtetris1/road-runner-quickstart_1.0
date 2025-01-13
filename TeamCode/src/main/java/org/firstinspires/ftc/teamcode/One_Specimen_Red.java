@@ -8,11 +8,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
 //ignore this for now
-@Autonomous(name="Observation_Park_FAR")
-public class Observation_Park_FAR extends LinearOpMode {
+@Autonomous(name="One_Specimen_Red")
+public class One_Specimen_Red extends LinearOpMode {
     RobotHardware2 robot = new RobotHardware2();
     // Motor encoder parameter
-    double ticksPerInch = 20; //check
+    double ticksPerInch = 31.3;
     double ticksPerDegree = 15.6;
 
 
@@ -24,16 +24,22 @@ public class Observation_Park_FAR extends LinearOpMode {
         robot.setAutoDriveMotorMode();
 
         telemetry.update();
+
+        robot.grabServo.setPosition(1.0);
+
         waitForStart();
+
         if (opModeIsActive()) {
 
 
             telemetry.update();
 //-1-234
-            sleep(4000);
-            int forwardTicks = 3000; //fix distances
+
+            int forwardTicks = 1000; //fix distances
             driveMotors(forwardTicks, forwardTicks, forwardTicks, forwardTicks, 0.4,
                     true, robot.yaw0);
+
+
 
 
 
