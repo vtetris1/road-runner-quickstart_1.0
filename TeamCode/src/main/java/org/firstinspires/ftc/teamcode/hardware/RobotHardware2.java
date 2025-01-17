@@ -136,7 +136,6 @@ public class RobotHardware2 {
         //boardPixel.setPosition(0);
         //grabServo.setPosition(0.4);
 
-        motorfl.setDirection(DcMotorSimple.Direction.REVERSE);
         motorfr.setDirection(DcMotorSimple.Direction.REVERSE);
         motorbl.setDirection(DcMotorSimple.Direction.REVERSE);
 

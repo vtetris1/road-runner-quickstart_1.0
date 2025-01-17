@@ -228,12 +228,8 @@ public class Observation_Park_FAR extends LinearOpMode {
         }
     }
 
-    private void deployPreloadedPixel1(int timeIntervalMs) {
-        // Deploy preloaded pixel 1
-        //robot.autoPixel.setPosition(1.0);
-        sleep(timeIntervalMs);
-        //robot.autoPixel.setPosition(0.5);
-        sleep(timeIntervalMs);
+    private void placeSpecimen(int timeIntervalMs) {
+        //
 
     }
 

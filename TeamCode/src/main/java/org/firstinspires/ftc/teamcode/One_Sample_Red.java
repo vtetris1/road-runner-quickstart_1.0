@@ -7,9 +7,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
+import java.security.KeyStore;
+
 //ignore this for now
-@Autonomous(name="One_Specimen_Red")
-public class One_Specimen_Red extends LinearOpMode {
+@Autonomous(name="One_Sample_Red")
+public class One_Sample_Red extends LinearOpMode {
     RobotHardware2 robot = new RobotHardware2();
     // Motor encoder parameter
     double ticksPerInch = 31.3;
@@ -33,38 +35,18 @@ public class One_Specimen_Red extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+
             robot.grabServo.setPosition(1.0);
 
             telemetry.update();
 //-1-234
-            robot.tiltServo.setPosition(0.25);
+            int strafeTicks = -600;
+            driveStrafe(strafeTicks,-strafeTicks,-strafeTicks,strafeTicks,0.4, true, robot.getCurrentYaw());
 
-            sleep(1000);
-            robot.actuatorMotor.setPower(1.0);
-            sleep(1200);
-            robot.actuatorMotor.setPower(0);
+            int forwardTicks = -560;
+            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
 
-
-            int forwardTicks = 1325; //fix distances
-            driveMotors(forwardTicks, forwardTicks, forwardTicks, forwardTicks, 0.25,
-                    true, 0);
-
-            robot.rotationServo.setPosition(0.5);
-            sleep(1000);
-            robot.tiltServo.setPosition(0.7);
-            turnPivotMotor(0.8, -400);
-            sleep(10000);
-            robot.grabServo.setPosition(0.0);
-
-            sleep(1000);
-            turnPivotMotor(0.2, 200);
-
-            sleep(500);
-            forwardTicks = -500; //fix distances
-            driveMotors(forwardTicks, forwardTicks, forwardTicks, forwardTicks, 0.25,
-                    true, 0);
-
-
+            sampleScore();
 
         }
     }
@@ -271,6 +253,26 @@ public class One_Specimen_Red extends LinearOpMode {
 
         robot.pivotMotor.setPower(power);
         robot.pivotMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void sampleScore(){
+        robot.actuatorMotor.setPower(1.0);
+        sleep(1200);
+        robot.extensionServo.setPower(-0.7);
+        sleep(1000);
+        robot.extensionServo.setPower(0);
+        robot.actuatorMotor.setPower(0);
+
+        turnPivotMotor(0.4, 1500);
+        sleep(1000);
+        robot.tiltServo.setPosition(0.4);
+        sleep(1000);
+        robot.grabServo.setPosition(0);
+        sleep(100);
+
+        robot.tiltServo.setPosition(0.7);
+
+        turnPivotMotor(0.3, -1000);
     }
 
 }

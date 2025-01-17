@@ -78,7 +78,7 @@ public class OpMode4 extends LinearOpMode {
 */
 
             if (gamepad2.dpad_up) {
-                robot.rotationServo.setPosition(1);
+                robot.rotationServo.setPosition(0.4);
             }
             if (gamepad2.dpad_right) {
                 robot.rotationServo.setPosition(0.7);
@@ -87,7 +87,7 @@ public class OpMode4 extends LinearOpMode {
                 robot.rotationServo.setPosition(0.5);
             }
             if (gamepad2.dpad_left) {
-                robot.rotationServo.setPosition(0.4);
+                robot.rotationServo.setPosition(0.3);
             }
 
 /*
@@ -120,9 +120,9 @@ public class OpMode4 extends LinearOpMode {
             }
 
             if (gamepad2.right_bumper) {
-                robot.grabServo.setPosition(1); //close
+                robot.grabServo.setPosition(1.0); //close
                 sleep(50);
-                robot.rotationServo.setPosition(1);
+                robot.rotationServo.setPosition(0.5);
                 }
 
 
@@ -147,18 +147,18 @@ public class OpMode4 extends LinearOpMode {
 */
 
 
-                if (gamepad2.right_stick_y > 0.7) {
+                if (gamepad2.left_stick_y > 0.7) {
                     robot.actuatorMotor.setPower(-1);
-                } else if (gamepad2.right_stick_y < -0.7) {
+                } else if (gamepad2.left_stick_y < -0.7) {
                     robot.actuatorMotor.setPower(1);
                 } else {
                     robot.actuatorMotor.setPower(0);
                 }
 
 
-                if (gamepad2.left_stick_y > 0.7) {
+                if (gamepad2.right_stick_y > 0.7) {
                     robot.pivotMotor.setPower(-0.4);
-                } else if (gamepad2.left_stick_y < -0.7) {
+                } else if (gamepad2.right_stick_y < -0.7) {
                     robot.pivotMotor.setPower(0.4);
                 } else {
                     robot.pivotMotor.setPower(0.08);
@@ -180,9 +180,6 @@ public class OpMode4 extends LinearOpMode {
                     robot.tiltServo.setPosition(0);
                 }
 
-            if(gamepad2.y){
-                robot.tiltServo.setPosition(0.49);
-            }
 
 
             //spin
