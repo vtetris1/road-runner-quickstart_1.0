@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
-//test
 @TeleOp(name = "OpMode4")
 
 public class OpMode4 extends LinearOpMode {
