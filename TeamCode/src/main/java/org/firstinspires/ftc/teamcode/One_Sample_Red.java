@@ -256,14 +256,14 @@ public class One_Sample_Red extends LinearOpMode {
     }
 
     public void sampleScore(){
+        robot.extensionServo.setPower(-0.7);
         robot.actuatorMotor.setPower(1.0);
         sleep(1200);
-        robot.extensionServo.setPower(-0.7);
-        sleep(1000);
         robot.extensionServo.setPower(0);
+        sleep(1000);
         robot.actuatorMotor.setPower(0);
 
-        turnPivotMotor(0.4, 1500);
+        turnPivotMotor(0.5, 1500);
         sleep(1000);
         robot.tiltServo.setPosition(0.4);
         sleep(1000);
