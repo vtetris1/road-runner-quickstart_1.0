@@ -83,20 +83,12 @@ public class OpMode4 extends LinearOpMode {
 // Driver (Controller 1) Code
             // Bumper: Actuator up and down
             if (gamepad1.right_bumper) {
-                controller1Speed = 0.2;
+                controller1Speed = 0.3;
             } else {
                 controller1Speed = 1;
             }
 
-            if (gamepad1.left_trigger > 0.7) {
-                robot.actuatorMotor.setPower(1);
 
-            }
-
-            else if (gamepad1.right_trigger > 0.7) {
-                robot.actuatorMotor.setPower(-1);
-
-            }
 
 
 
@@ -172,9 +164,9 @@ public class OpMode4 extends LinearOpMode {
 */
 
 
-                if (gamepad2.right_stick_y > 0.7) {
+                if (gamepad1.right_trigger > 0.7) {
                     robot.actuatorMotor.setPower(-1);
-                } else if (gamepad2.right_stick_y < -0.7) {
+                } else if (gamepad1.left_trigger > 0.7){
                     robot.actuatorMotor.setPower(1);
                 } else {
                     robot.actuatorMotor.setPower(0);
