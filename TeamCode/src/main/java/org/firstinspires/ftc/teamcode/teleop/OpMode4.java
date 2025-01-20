@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
+//test
 @TeleOp(name = "OpMode4")
 
 public class OpMode4 extends LinearOpMode {
@@ -24,8 +25,6 @@ public class OpMode4 extends LinearOpMode {
 */
     double rotatePosition = 0.5;
     double horizontalPosition = 0;
-    double controller1Speed = 1;
-
 
     ElapsedTime timer = new ElapsedTime();
 
@@ -49,7 +48,9 @@ public class OpMode4 extends LinearOpMode {
         // robot.liftHex.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Put initialization blocks here.
         waitForStart();
+        double controller1Speed = 0;
         while (opModeIsActive()) {
+
             double horizontal = gamepad1.left_stick_x * 0.7 * controller1Speed; // -0.7
             double vertical = -gamepad1.left_stick_y * 0.7 * controller1Speed; // 0.7
             double turn = gamepad1.right_stick_x * 0.7 * controller1Speed;
@@ -63,6 +64,11 @@ public class OpMode4 extends LinearOpMode {
                     robot.motorbr.getCurrentPosition()
             ));
 
+            if (gamepad1.right_bumper) {
+                controller1Speed = 0.3;
+            } else {
+                controller1Speed = 1;
+            }
            /* double Power = pidControl(100, robot.pivotMotor.getVelocity());
 
 
@@ -75,24 +81,10 @@ public class OpMode4 extends LinearOpMode {
                 robot.pivotMotor.setPower(-Power);
                 sleep(15);
             }
-
-
 */
 
-// Driver (Controller 1) Code
-            // Bumper: Actuator up and down
-            if (gamepad1.right_bumper) {
-                controller1Speed = 0.3;
-            } else {
-                controller1Speed = 1;
-            }
-
-
-
-
-
             if (gamepad2.dpad_up) {
-                robot.rotationServo.setPosition(1);
+                robot.rotationServo.setPosition(0.4);
             }
             if (gamepad2.dpad_right) {
                 robot.rotationServo.setPosition(0.7);
@@ -101,7 +93,7 @@ public class OpMode4 extends LinearOpMode {
                 robot.rotationServo.setPosition(0.5);
             }
             if (gamepad2.dpad_left) {
-                robot.rotationServo.setPosition(0.4);
+                robot.rotationServo.setPosition(0.3);
             }
 
 /*
@@ -134,17 +126,15 @@ public class OpMode4 extends LinearOpMode {
             }
 
             if (gamepad2.right_bumper) {
-                robot.grabServo.setPosition(1); //close
+                robot.grabServo.setPosition(1.0); //close
                 sleep(50);
-                robot.rotationServo.setPosition(1);
+                robot.rotationServo.setPosition(0.5);
                 }
 
 
             if (gamepad2.left_bumper) {
                 robot.grabServo.setPosition(0);
                 }
-
-
 
 /*
                 while (gamepad1.right_trigger > 0.7) {
@@ -165,16 +155,16 @@ public class OpMode4 extends LinearOpMode {
 
                 if (gamepad1.right_trigger > 0.7) {
                     robot.actuatorMotor.setPower(-1);
-                } else if (gamepad1.left_trigger > 0.7){
+                } else if (gamepad1.left_trigger > 0.7) {
                     robot.actuatorMotor.setPower(1);
                 } else {
                     robot.actuatorMotor.setPower(0);
                 }
 
 
-                if (gamepad2.left_stick_y > 0.7) {
+                if (gamepad2.right_stick_y > 0.7) {
                     robot.pivotMotor.setPower(-0.4);
-                } else if (gamepad2.left_stick_y < -0.7) {
+                } else if (gamepad2.right_stick_y < -0.7) {
                     robot.pivotMotor.setPower(0.4);
                 } else {
                     robot.pivotMotor.setPower(0.08);
@@ -196,9 +186,6 @@ public class OpMode4 extends LinearOpMode {
                     robot.tiltServo.setPosition(0);
                 }
 
-            if(gamepad2.y){
-                robot.tiltServo.setPosition(0.49);
-            }
 
 
             //spin
