@@ -107,8 +107,6 @@ public class RobotHardware2 {
         motorbl = hwMap.get(DcMotor.class, "leftBack");
         motorbr = hwMap.get(DcMotor.class, "rightBack");
 
-        leftLiftMotor = hwMap.get(DcMotor.class, "lift_left");
-        rightLiftMotor = hwMap.get(DcMotor.class, "lift_right");
 
         actuatorMotor = hwMap.get(DcMotor.class, "actuator");
         pivotMotor = hwMap.get(DcMotorEx.class, "pivot");
@@ -135,7 +133,6 @@ public class RobotHardware2 {
         //autoPixel.setPosition(0.5);
         //boardPixel.setPosition(0);
         //grabServo.setPosition(0.4);
-
         motorfr.setDirection(DcMotorSimple.Direction.REVERSE);
         motorbl.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -163,8 +160,6 @@ public class RobotHardware2 {
         angularVelocity0 = imu.getRobotAngularVelocity(AngleUnit.DEGREES);
         yaw0 = orientation0.getYaw(AngleUnit.DEGREES);
 
-        pivotMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        pivotMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void setAutoDriveMotorMode() {
@@ -182,6 +177,9 @@ public class RobotHardware2 {
         motorfl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorbr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorbl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        pivotMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        pivotMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public double getCurrentYaw() {

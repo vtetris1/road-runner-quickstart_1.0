@@ -7,11 +7,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
-import java.security.KeyStore;
-
 //ignore this for now
-@Autonomous(name="One_Sample_Red")
-public class One_Sample_Red extends LinearOpMode {
+@Autonomous(name="One_Sample_Blue")
+public class One_Sample_Blue extends LinearOpMode {
     RobotHardware2 robot = new RobotHardware2();
     // Motor encoder parameter
     double ticksPerInch = 31.3;
@@ -44,10 +42,10 @@ public class One_Sample_Red extends LinearOpMode {
 
             telemetry.update();
 //-1-234
-            int strafeTicks = -600;
+            int strafeTicks = 600;
             driveStrafe(strafeTicks,-strafeTicks,-strafeTicks,strafeTicks,0.4, true, robot.getCurrentYaw());
 
-            int forwardTicks = -560;
+            int forwardTicks = 560;
             driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
 
             sampleScore();
@@ -250,7 +248,7 @@ public class One_Sample_Red extends LinearOpMode {
         sleep(timeIntervalMs);
 
     }
-    public void turnPivotMotor(double power, int pivotTarget){
+    private void turnPivotMotor(double power, int pivotTarget){
         robot.pivotMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.pivotMotor.setTargetPosition(pivotTarget);
