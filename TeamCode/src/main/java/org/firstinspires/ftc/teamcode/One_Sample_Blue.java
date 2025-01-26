@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
 //ignore this for now
-@Autonomous(name="One_Sample_Blue")
+@Autonomous(name="DO_NO_USE")
 public class One_Sample_Blue extends LinearOpMode {
     RobotHardware2 robot = new RobotHardware2();
     // Motor encoder parameter
@@ -42,7 +42,7 @@ public class One_Sample_Blue extends LinearOpMode {
 
             telemetry.update();
 //-1-234
-            int strafeTicks = 600;
+            int strafeTicks = -600;
             driveStrafe(strafeTicks,-strafeTicks,-strafeTicks,strafeTicks,0.4, true, robot.getCurrentYaw());
 
             int forwardTicks = 560;
@@ -259,9 +259,9 @@ public class One_Sample_Blue extends LinearOpMode {
 
     public void sampleScore(){
         robot.actuatorMotor.setPower(1.0);
-        sleep(1200);
+        sleep(1400);
         robot.extensionServo.setPower(-0.7);
-        sleep(1000);
+        sleep(800);
         robot.extensionServo.setPower(0);
         robot.actuatorMotor.setPower(0);
 

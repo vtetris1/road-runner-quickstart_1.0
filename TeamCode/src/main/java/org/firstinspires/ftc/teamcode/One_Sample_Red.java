@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 import java.security.KeyStore;
 
 //ignore this for now
-@Autonomous(name="One_Sample_Red")
+@Autonomous(name="One_Sample_ALL")
 public class One_Sample_Red extends LinearOpMode {
     RobotHardware2 robot = new RobotHardware2();
     // Motor encoder parameter

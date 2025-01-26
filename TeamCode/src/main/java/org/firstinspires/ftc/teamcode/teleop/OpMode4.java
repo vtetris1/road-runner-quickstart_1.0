@@ -28,6 +28,8 @@ public class OpMode4 extends LinearOpMode {
     double horizontalPosition = 0;
     int pivotTicks = 50;
 
+    double pivotArmSpeed = 0.6;
+
     ElapsedTime timer = new ElapsedTime();
 
 
@@ -84,24 +86,28 @@ public class OpMode4 extends LinearOpMode {
                 sleep(100);
                 pivotTicks += 50;
             }
-*/          if(gamepad2.right_stick_y > 0.7){
-                robot.pivotMotor.setPower(-0.4);
+
+
+*/
+
+            if(gamepad2.right_stick_y > 0.7){
+                robot.pivotMotor.setPower(-0.6);
             }
 
             else if(gamepad2.right_stick_y < -0.7){
-                robot.pivotMotor.setPower(0.4);
+                robot.pivotMotor.setPower(pivotArmSpeed);
             }
 
             else {
                 robot.pivotMotor.setPower(0.08);
             }
-            if (gamepad2.dpad_up) {
-                robot.rotationServo.setPosition(0.4);
+            if (gamepad2.dpad_down) {
+                robot.rotationServo.setPosition(1);
             }
             if (gamepad2.dpad_right) {
                 robot.rotationServo.setPosition(0.7);
             }
-            if (gamepad2.dpad_down) {
+            if (gamepad2.dpad_up) {
                 robot.rotationServo.setPosition(0.5);
             }
             if (gamepad2.dpad_left) {
@@ -122,9 +128,7 @@ public class OpMode4 extends LinearOpMode {
 
 
             if (gamepad2.right_bumper) {
-                robot.grabServo.setPosition(1.0); //close
-                sleep(50);
-                robot.rotationServo.setPosition(0.5);
+                robot.grabServo.setPosition(1); //close
                 }
 
             if (gamepad2.left_bumper) {
