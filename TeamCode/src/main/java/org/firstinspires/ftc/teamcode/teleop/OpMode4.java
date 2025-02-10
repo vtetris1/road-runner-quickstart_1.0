@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
@@ -26,9 +27,10 @@ public class OpMode4 extends LinearOpMode {
 */
     double rotatePosition = 0.5;
     double horizontalPosition = 0;
-    int pivotTicks = 50;
+    int pivotTicks = 0;
 
     double pivotArmSpeed = 0.6;
+
 
     ElapsedTime timer = new ElapsedTime();
 
@@ -87,20 +89,32 @@ public class OpMode4 extends LinearOpMode {
                 pivotTicks += 50;
             }
 
-
 */
 
-            if(gamepad2.right_stick_y > 0.7){
-                robot.pivotMotor.setPower(-0.6);
+            if (gamepad2.right_stick_y > 0.7){
+                turnPivotMotor(1, (pivotTicks + 2000));
+
+                telemetry.addLine(String.format("pivot ticks: %d",
+                        pivotTicks
+                ));
+
             }
 
-            else if(gamepad2.right_stick_y < -0.7){
-                robot.pivotMotor.setPower(pivotArmSpeed);
+            else if (gamepad2.right_stick_y < -0.7){
+                turnPivotMotor(1, -(pivotTicks + 2000));
+
+                telemetry.addLine(String.format("pivot ticks: %d",
+                        pivotTicks
+                ));
+
             }
 
-            else {
-                robot.pivotMotor.setPower(0.08);
+            else{
+                turnPivotMotor(0,0);
             }
+
+
+
             if (gamepad2.dpad_down) {
                 robot.rotationServo.setPosition(1);
             }
@@ -108,7 +122,7 @@ public class OpMode4 extends LinearOpMode {
                 robot.rotationServo.setPosition(0.7);
             }
             if (gamepad2.dpad_up) {
-                robot.rotationServo.setPosition(0.5);
+                robot.rotationServo.setPosition(0.45);
             }
             if (gamepad2.dpad_left) {
                 robot.rotationServo.setPosition(0.3);
@@ -116,11 +130,11 @@ public class OpMode4 extends LinearOpMode {
 
 
             if (gamepad2.left_trigger > 0.7) {
-                robot.extensionServo.setPower(0.7);
+                robot.extensionServo.setPower(0.5);
             }
 
             else if (gamepad2.right_trigger > 0.7) {
-                robot.extensionServo.setPower(-0.7);
+                robot.extensionServo.setPower(-0.5);
             }
             else{
                 robot.extensionServo.setPower(0);
@@ -128,12 +142,14 @@ public class OpMode4 extends LinearOpMode {
 
 
             if (gamepad2.right_bumper) {
-                robot.grabServo.setPosition(1); //close
+                robot.grabServo.setPosition(0.6); //close
                 }
 
             if (gamepad2.left_bumper) {
-                robot.grabServo.setPosition(0);
+                robot.grabServo.setPosition(0.3);
                 }
+
+
 
 
             if (gamepad1.left_trigger > 0.7) {
@@ -148,20 +164,36 @@ public class OpMode4 extends LinearOpMode {
 
 
 
+            if (gamepad2.left_stick_y > 0.7) {
+                robot.actuatorMotor.setPower(-1);
+            }
+            else if (gamepad2.left_stick_y < -0.7) {
+                robot.actuatorMotor.setPower(1);
+            }
+            else {
+                robot.actuatorMotor.setPower(0);
+            }
+
+
+
                 // 0.7      1                    -0.7
 
 //make sure one of the directions is correct/reversed
 
-            if(gamepad2.y){
-                robot.tiltServo.setPosition(0.39);
+            if(gamepad2.a){
+                robot.tiltServo.setPosition(0.5);
             }
 
             if (gamepad2.b){
-                robot.tiltServo.setPosition(0.7);
+                robot.tiltServo.setPosition(1);
             }
 
             if (gamepad2.x){
-                robot.tiltServo.setPosition(0);
+                robot.tiltServo.setPosition(0.3); //0
+            }
+
+            if (gamepad2.y){
+                robot.tiltServo.setPosition(0); //0
             }
 
 

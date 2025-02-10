@@ -16,14 +16,12 @@ public class One_Sample_Red extends LinearOpMode {
     // Motor encoder parameter
     double ticksPerInch = 31.3;
     double ticksPerDegree = 15.6;
-
+    int pivotTicks = 0;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init2(hardwareMap);
-        robot.pivotMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.pivotMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         //reset encoder
@@ -40,18 +38,31 @@ public class One_Sample_Red extends LinearOpMode {
         if (opModeIsActive()) {
 
 
+
             robot.grabServo.setPosition(1.0);
 
             telemetry.update();
 //-1-234
-            int strafeTicks = -600;
+            int strafeTicks = -450;
             driveStrafe(strafeTicks,-strafeTicks,-strafeTicks,strafeTicks,0.4, true, robot.getCurrentYaw());
 
-            int forwardTicks = -560;
+            int forwardTicks = -600;
             driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
+
+            turnToTargetYaw(45,0.5,1500);
+
+            forwardTicks = -100;
+            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
+
 
             sampleScore();
 
+            sleep(100);
+
+            turnToTargetYaw(0,0.5,1500);
+
+            forwardTicks = 4600;
+            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
         }
     }
 
@@ -262,21 +273,21 @@ public class One_Sample_Red extends LinearOpMode {
     public void sampleScore(){
         robot.actuatorMotor.setPower(1.0);
         sleep(1200);
-        robot.extensionServo.setPower(-0.7);
+        robot.extensionServo.setPower(-0.9);
         sleep(1000);
         robot.extensionServo.setPower(0);
         robot.actuatorMotor.setPower(0);
 
-        turnPivotMotor(0.4, 1500);
+        turnPivotMotor(1, -(pivotTicks + 1050));
         sleep(1000);
-        robot.tiltServo.setPosition(0.4);
+        robot.tiltServo.setPosition(0);
         sleep(1000);
         robot.grabServo.setPosition(0);
         sleep(100);
 
-        robot.tiltServo.setPosition(0.7);
+        robot.tiltServo.setPosition(0.3);
 
-        turnPivotMotor(0.3, -1000);
+        turnPivotMotor(1, (pivotTicks + 1000));
     }
 
 }

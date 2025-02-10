@@ -20,8 +20,7 @@ public class One_Sample_Blue extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init2(hardwareMap);
-        robot.pivotMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.pivotMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
 
         //reset encoder
@@ -260,9 +259,9 @@ public class One_Sample_Blue extends LinearOpMode {
     public void sampleScore(){
         robot.actuatorMotor.setPower(1.0);
         sleep(1400);
-        robot.extensionServo.setPower(-0.7);
+        //robot.extensionServo.setPower(-0.7);
         sleep(800);
-        robot.extensionServo.setPower(0);
+        //robot.extensionServo.setPower(0);
         robot.actuatorMotor.setPower(0);
 
         turnPivotMotor(0.4, 1500);
