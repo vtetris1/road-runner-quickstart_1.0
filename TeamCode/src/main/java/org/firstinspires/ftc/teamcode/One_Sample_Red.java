@@ -51,7 +51,7 @@ public class One_Sample_Red extends LinearOpMode {
 
             turnToTargetYaw(45,0.5,1500);
 
-            forwardTicks = -100;
+            forwardTicks = -250;
             driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
 
 
@@ -274,11 +274,11 @@ public class One_Sample_Red extends LinearOpMode {
         robot.actuatorMotor.setPower(1.0);
         sleep(1200);
         robot.extensionServo.setPower(-0.9);
-        sleep(1000);
+        sleep(800);
         robot.extensionServo.setPower(0);
         robot.actuatorMotor.setPower(0);
 
-        turnPivotMotor(1, -(pivotTicks + 1050));
+        turnPivotMotor(1, -(pivotTicks + 1600));
         sleep(1000);
         robot.tiltServo.setPosition(0);
         sleep(1000);

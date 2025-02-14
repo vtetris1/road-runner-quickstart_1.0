@@ -29,6 +29,8 @@
 
 package org.firstinspires.ftc.teamcode.hardware;
 
+import android.graphics.RenderNode;
+
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -76,7 +78,7 @@ public class RobotHardware2 {
     public Servo tiltServo = null;
     public Servo rotationServo = null;
     public CRServo extensionServo = null;
-    public Servo pushServo = null;
+    public Servo pushServo;
     public double PUSH_SERVO_POS_INIT = 0.452;
     public double PUSH_SERVO_POS_PUSH_UP = 0.0;
 
@@ -130,7 +132,6 @@ public class RobotHardware2 {
         rotationServo = hwMap.get(Servo.class, "rotate_servo");
         extensionServo = hwMap.get(CRServo.class, "extend_servo");
         pushServo = hwMap.get(Servo.class, "push_servo");
-        pushServo.setPosition(PUSH_SERVO_POS_INIT);    // set initial position for the push servo.
 
         //intakeTilt = hwMap.get(Servo.class, "intake_servo");
         //tiltServoLeft = hwMap.get(Servo.class, "tiltServoL");
@@ -277,6 +278,32 @@ public class RobotHardware2 {
     //public void setArmPower(double armPower){
      //   linearSlider.setPower(armPower);
     //}
+
+
+
+
+
+
 }
+/*
+   port 1 motorfl
+   port 2 motorbl
+   port 3 motorap
+   extension hub port 0 motorfr
+   extension hub port 1 motorbr
+   extension hub port 2 liftArm
+   extension hub port 3 liftHex
+
+   Servos
+   port 0 boardPixel
+   port 1 grabServo
+   port 2 tiltServo
+
+   extension hub port 0 autoPixel
+   extension hub port 1 feeder
 
 
+   //Controls//
+   Gamepad 1:
+
+     */

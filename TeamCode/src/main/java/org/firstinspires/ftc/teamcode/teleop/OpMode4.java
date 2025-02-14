@@ -106,10 +106,10 @@ public class OpMode4 extends LinearOpMode {
             else {
                 turnPivotMotor(0,0);
             }
-            if (gamepad2.right_stick_x > 0.7) {
+            if (gamepad1.b) {
                 robot.pushServo.setPosition(robot.PUSH_SERVO_POS_PUSH_UP);
             }
-            else if (gamepad2.right_stick_x < -0.7) {
+            else if (gamepad1.x) {
                 robot.pushServo.setPosition(robot.PUSH_SERVO_POS_INIT);
             }
 
@@ -167,10 +167,10 @@ public class OpMode4 extends LinearOpMode {
                 // 0.7      1                    -0.7
 //make sure one of the directions is correct/reversed
             if (gamepad2.a) {
-                robot.tiltServo.setPosition(0.5);
+                robot.tiltServo.setPosition(0.4);
             }
             else if (gamepad2.b) {
-                robot.tiltServo.setPosition(1);
+                robot.tiltServo.setPosition(0.5);
             }
             else if (gamepad2.x) {
                 robot.tiltServo.setPosition(0.3); //0
