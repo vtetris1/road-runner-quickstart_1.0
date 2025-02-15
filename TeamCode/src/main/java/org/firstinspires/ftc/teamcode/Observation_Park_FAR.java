@@ -14,6 +14,7 @@ public class Observation_Park_FAR extends LinearOpMode {
     // Motor encoder parameter
     double ticksPerInch = 20; //check
     double ticksPerDegree = 15.6;
+    int pivotTicks = 0;
 
 
     @Override
@@ -31,6 +32,7 @@ public class Observation_Park_FAR extends LinearOpMode {
             telemetry.update();
 //-1-234
             sleep(4000);
+
             int forwardTicks = 3000; //fix distances
             driveMotors(forwardTicks, forwardTicks, forwardTicks, forwardTicks, 0.4,
                     true, robot.yaw0);
@@ -228,9 +230,13 @@ public class Observation_Park_FAR extends LinearOpMode {
         }
     }
 
-    private void placeSpecimen(int timeIntervalMs) {
-        //
+    public void turnPivotMotor(double power, int pivotTarget){
+        robot.pivotMotor.setTargetPosition(pivotTarget);
 
+        robot.pivotMotor.setPower(power);
+        robot.pivotMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
+
 }
+

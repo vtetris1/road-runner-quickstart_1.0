@@ -145,10 +145,10 @@ public class OpMode4 extends LinearOpMode {
             }
 
             if (gamepad1.left_trigger > 0.7) {
-                robot.actuatorMotor.setPower(-1);
+                robot.actuatorMotor.setPower(-0.9);
             }
             else if (gamepad1.right_trigger > 0.7) {
-                robot.actuatorMotor.setPower(1);
+                robot.actuatorMotor.setPower(0.9);
             }
             else {
                 robot.actuatorMotor.setPower(0);

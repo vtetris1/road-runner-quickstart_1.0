@@ -7,22 +7,22 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware2;
 
-import java.security.KeyStore;
-
 //ignore this for now
-@Autonomous(name="old_one_sample_DONTUSE")
-public class One_Sample_Red extends LinearOpMode {
+@Autonomous(name="One_Sample_HANG")
+public class One_Sample_Hang extends LinearOpMode {
     RobotHardware2 robot = new RobotHardware2();
     // Motor encoder parameter
     double ticksPerInch = 31.3;
     double ticksPerDegree = 15.6;
+
     int pivotTicks = 0;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init2(hardwareMap);
-
+        robot.pivotMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pivotTicks = robot.pivotMotor.getCurrentPosition();
 
         //reset encoder
         robot.setAutoDriveMotorMode();
@@ -61,8 +61,23 @@ public class One_Sample_Red extends LinearOpMode {
 
             turnToTargetYaw(0,0.5,1500);
 
-            forwardTicks = 4600;
-            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.2, true, robot.getCurrentYaw());
+            forwardTicks = 1000;
+            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.3, true, robot.getCurrentYaw());
+
+            turnToTargetYaw(90,0.7,3000);
+
+            forwardTicks = 2200;
+            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.3, true, robot.getCurrentYaw());
+
+            turnToTargetYaw(0,0.6,3000);
+
+            forwardTicks = 800;
+            driveMotors(forwardTicks,forwardTicks,forwardTicks,forwardTicks,0.3, true, robot.getCurrentYaw());
+
+            turnPivotMotor(1, (pivotTicks - 200));
+
+            sleep(3000);
+
         }
     }
 
@@ -262,8 +277,6 @@ public class One_Sample_Red extends LinearOpMode {
 
     }
     public void turnPivotMotor(double power, int pivotTarget){
-        robot.pivotMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
         robot.pivotMotor.setTargetPosition(pivotTarget);
 
         robot.pivotMotor.setPower(power);
@@ -274,20 +287,23 @@ public class One_Sample_Red extends LinearOpMode {
         robot.actuatorMotor.setPower(1.0);
         sleep(1200);
         robot.extensionServo.setPower(-0.9);
-        sleep(800);
+        sleep(825);
         robot.extensionServo.setPower(0);
         robot.actuatorMotor.setPower(0);
-
-        turnPivotMotor(1, -(pivotTicks + 1600));
+        robot.rotationServo.setPosition(0.45);
+        turnPivotMotor(1, (pivotTicks - 1800));
         sleep(1000);
         robot.tiltServo.setPosition(0);
-        sleep(1000);
+
+        sleep(425);
         robot.grabServo.setPosition(0);
         sleep(100);
 
         robot.tiltServo.setPosition(0.3);
 
-        turnPivotMotor(1, (pivotTicks + 1000));
+        turnPivotMotor(1, (pivotTicks - 700));
+
+
     }
 
 }
